@@ -25,7 +25,7 @@ function App() {
 
   useEffect(() => {
     fetchNews();
-    const interval = setInterval(fetchNews, 600000); // 10 minutes
+    const interval = setInterval(fetchNews, 1200000); // 10 minutes
     return () => clearInterval(interval);
   }, [category]);
 
