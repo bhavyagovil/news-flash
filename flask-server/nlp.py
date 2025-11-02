@@ -7,7 +7,7 @@ import os
 import re
 from newsapi import NewsApiClient
 
-newsapi = NewsApiClient(api_key='531966d5c37d4c18829cfa3f18d2f3d9')
+newsapi = NewsApiClient(api_key='a2b964a8aca5451293eb53f6e428e4fe')
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 CACHE_FILE = os.path.join(SCRIPT_DIR, 'sentiment_cache.json')
