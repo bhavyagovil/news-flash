@@ -1,3 +1,4 @@
+
 body {
   background-color: #fdf6ec;
   font-family: 'Times New Roman', Times, serif;
@@ -12,6 +13,7 @@ body {
   padding: 1rem;
 }
 
+
 h1 {
   text-align: center;
   color: black;
@@ -25,7 +27,9 @@ h1 {
 .refresh-note {
   font-style: italic;
   color: #5c2c2c;
+  margin-bottom: 1rem;
 }
+
 
 .summary-card {
   background-color: #fff8ee;
@@ -34,7 +38,26 @@ h1 {
   border-radius: 8px;
   margin-top: 1rem;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.3s ease;
 }
+
+.summary-card:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+.error {
+  color: darkred;
+  font-weight: bold;
+  margin-top: 1rem;
+}
+
+
+.loading {
+  font-style: italic;
+  margin-top: 1rem;
+}
+
 
 .article-list {
   list-style: none;
@@ -50,6 +73,11 @@ h1 {
   padding: 0.8rem;
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease-in-out;
+}
+
+.article-item:hover {
+  transform: scale(1.02);
 }
 
 .article-thumb {
@@ -60,8 +88,9 @@ h1 {
   margin-right: 1rem;
 }
 
+
 .article-text a {
-  color:black;
+  color: black;
   text-decoration: none;
   font-weight: bold;
 }

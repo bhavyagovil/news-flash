@@ -6,24 +6,26 @@ function App() {
   const [summary, setSummary] = useState(null);
   const [category, setCategory] = useState("general");
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const fetchNews = async () => {
     setLoading(true);
     try {
       const res = await fetch(`http://127.0.0.1:5000/news?category=${category}`);
       const data = await res.json();
-
       setArticles(data.articles || []);
       setSummary(data.summary || null);
+      setError(null);
     } catch (err) {
       console.error("Error fetching news:", err);
+      setError("Failed to fetch news. Please try again later.");
     }
     setLoading(false);
   };
 
   useEffect(() => {
     fetchNews();
-    const interval = setInterval(fetchNews, 6000000);
+    const interval = setInterval(fetchNews, 600000); // 10 minutes
     return () => clearInterval(interval);
   }, [category]);
 
@@ -46,21 +48,14 @@ function App() {
 
       <p className="refresh-note">Auto-refreshing every 10 minutes</p>
 
+      {error && <p className="error">{error}</p>}
+
       {summary && (
         <div className="summary-card">
-          <h2>
-            {summary.category.toUpperCase()}:{" "}
-            {summary.overall_label === "Positive" ? (
-              <span style={{ color: "green" }}>Positive</span>
-            ) : summary.overall_label === "Negative" ? (
-              <span style={{ color: "darkred" }}>Negative</span>
-            ) : (
-              <span style={{ color: "gray" }}>Neutral</span>
-            )}
+          <h2 className={`summary-${summary.overall_label.toLowerCase()}`}>
+            {summary.category.toUpperCase()}: {summary.overall_label}
           </h2>
-          <p>
-            Avg Sentiment: {summary.average_sentiment.toFixed(4)}
-          </p>
+          <p>Avg Sentiment: {summary.average_sentiment.toFixed(4)}</p>
         </div>
       )}
 
@@ -70,34 +65,22 @@ function App() {
         {articles.map((a, i) => (
           <li key={i} className="article-item">
             {a.urlToImage && (
-              <img src={a.urlToImage} alt="" className="article-thumb" />
+              <img
+                src={a.urlToImage}
+                alt={a.title || "Article thumbnail"}
+                className="article-thumb"
+              />
             )}
             <div className="article-text">
               <a href={a.url} target="_blank" rel="noreferrer">
                 {a.title}
               </a>
               {a.sentiment && (
-                <p className="sentiment-line">
-                  Sentiment:{" "}
-                  <span
-                    style={{
-                      color:
-                        a.sentiment === "POSITIVE"
-                          ? "green"
-                          : a.sentiment === "NEGATIVE"
-                          ? "darkred"
-                          : "gray",
-                      fontWeight: "bold",
-                    }}
-                  >
-                    {a.sentiment}
-                  </span>{" "}
-                  ({(a.score * 100).toFixed(1)}%)
+                <p className={`sentiment-line sentiment-${a.sentiment.toLowerCase()}`}>
+                  Sentiment: {a.sentiment} ({(a.score * 100).toFixed(1)}%)
                 </p>
               )}
-              {a.source?.name && (
-                <span className="source"> — {a.source.name}</span>
-              )}
+              {a.source?.name && <span className="source"> — {a.source.name}</span>}
             </div>
           </li>
         ))}
