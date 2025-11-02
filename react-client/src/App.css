@@ -1,0 +1,81 @@
+body {
+  background-color: #fdf6ec;
+  font-family: 'Times New Roman', Times, serif;
+  color: #4a1f1f;
+  margin: 0;
+  padding: 0;
+}
+
+.app {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+h1 {
+  text-align: center;
+  color: black;
+}
+
+.category-label {
+  font-weight: bold;
+  color: #800000;
+}
+
+.refresh-note {
+  font-style: italic;
+  color: #5c2c2c;
+}
+
+.summary-card {
+  background-color: #fff8ee;
+  border-left: 5px solid #800000;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-top: 1rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.article-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 1.5rem;
+}
+
+.article-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+  background-color: #fff8ee;
+  padding: 0.8rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.article-thumb {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-right: 1rem;
+}
+
+.article-text a {
+  color:black;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.article-text a:hover {
+  text-decoration: underline;
+}
+
+.sentiment-line {
+  margin: 0.2rem 0;
+  font-style: italic;
+}
+
+.source {
+  font-size: 0.9rem;
+  color: #666;
+}
