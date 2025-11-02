@@ -6,7 +6,7 @@ import nlp
 app = Flask(__name__)
 CORS(app)
 
-API_KEY = "531966d5c37d4c18829cfa3f18d2f3d9"
+API_KEY = "a2b964a8aca5451293eb53f6e428e4fe"
 
 @app.route("/news")
 def get_news():
